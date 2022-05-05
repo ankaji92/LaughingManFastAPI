@@ -1,36 +1,9 @@
 <html>
     <head>
         <title>Video Streaming Demonstration</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     </head>
     <body>
         <h1>Video Streaming Demonstration</h1>
-        <div style="width:400px">
-            <canvas id="myChart"></canvas>
-        </div>
-        <script>
-            var url = "{{ url_for('result_feed') }}"
-            var response = fetch(url, { method: "get" })
-            console.log(response)
-            var json_data = response.json;
-            console.log(json_data)
-            var chartData = {
-                labels: ["0","1","2","3","4","5"],
-                datasets: json_data
-            }
-            var ctx = document.getElementById('myChart');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: chartData,
-                options: {
-                    y: {
-                        min: 0,
-                        max: 20,
-                    }
-                },
-            });
-        </script>
         <img src="{{ url_for('video_feed') }}">
     </body>
 </html>
