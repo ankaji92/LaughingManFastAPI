@@ -2,7 +2,7 @@ import os
 import cv2
 import numpy as np
 
-def extract_fg(img):
+def _extract_fg(img):
     fg_region = np.zeros(img.shape)
     for v, line in enumerate(img):
         non_white_pxs = np.array(np.where(line < 250))
@@ -14,7 +14,7 @@ def extract_fg(img):
 class LaughingManMaskStream:
     def __init__(self, gif_path=os.path.join(os.path.abspath(__file__), "laughing_man.gif")):
         self.cap = cv2.VideoCapture(gif_path)
-        self.fg_region = extract_fg(self.cap.read()[1])
+        self.fg_region = _extract_fg(self.cap.read()[1])
     
     def next(self):
         ret, frame = self.cap.read()
